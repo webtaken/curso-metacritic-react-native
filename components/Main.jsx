@@ -1,15 +1,9 @@
-import {
-  StyleSheet,
-  View,
-  ScrollView,
-  ActivityIndicator,
-  FlatList,
-} from "react-native";
+import { StyleSheet, ActivityIndicator, FlatList } from "react-native";
 import { useState, useEffect } from "react";
 import { getLatestGames } from "../lib/metacritic";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { AnimatedGameCard, GameCard } from "./GameCard";
-import { Logo } from "./Logo";
+import { AnimatedGameCard } from "./GameCard";
+import { Screen } from "./Screen";
 
 export function Main() {
   const [games, setGames] = useState([]);
@@ -22,10 +16,7 @@ export function Main() {
   }, []);
 
   return (
-    <View style={{ paddingTop: insets.top, paddingBottom: insets.bottom }}>
-      <View style={{ marginVertical: 10 }}>
-        <Logo />
-      </View>
+    <Screen>
       {games.length === 0 ? (
         <ActivityIndicator color={"#fff"} size="large" />
       ) : (
@@ -37,7 +28,7 @@ export function Main() {
           )}
         />
       )}
-    </View>
+    </Screen>
   );
 }
 
